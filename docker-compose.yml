@@ -1,0 +1,39 @@
+services:
+  # Container próprio do PostgreSQL (separado da aplicação)
+  db:
+    image: postgres:16-alpine
+    container_name: ecommerce-db
+    environment:
+      POSTGRES_USER: ecommerce
+      POSTGRES_PASSWORD: ecommerce
+      POSTGRES_DB: ecommerce
+    ports:
+      - "5432:5432"
+    volumes:
+      - dados_postgres:/var/lib/postgresql/data
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/01-schemas.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ecommerce -d ecommerce"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  # A aplicação Nest (monolito modular)
+  api:
+    build: .
+    container_name: ecommerce-api
+    environment:
+      DB_HOST: db # nome do serviço acima, não "localhost"
+      DB_PORT: 5432
+      DB_USER: ecommerce
+      DB_PASSWORD: ecommerce
+      DB_NAME: ecommerce
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy # só sobe a API quando o banco estiver pronto
+
+volumes:
+  dados_postgres:
