@@ -1,0 +1,47 @@
+### Roteiro de demonstração (extensão REST Client do VS Code: clique em "Send Request")
+@url = http://localhost:3000
+
+### 1. Criar produto
+POST {{url}}/produtos
+Content-Type: application/json
+
+{ "nome": "Teclado", "preco": 150.50 }
+
+### 2. Criar outro produto
+POST {{url}}/produtos
+Content-Type: application/json
+
+{ "nome": "Mouse", "preco": 79.90 }
+
+### 3. Listar produtos
+GET {{url}}/produtos
+
+### 4. Definir estoque do produto 1
+PATCH {{url}}/estoque/1
+Content-Type: application/json
+
+{ "quantidade": 10 }
+
+### 5. Definir estoque do produto 2
+PATCH {{url}}/estoque/2
+Content-Type: application/json
+
+{ "quantidade": 2 }
+
+### 6. Criar pedido (OK -> 201)
+POST {{url}}/pedidos
+Content-Type: application/json
+
+{ "itens": [ { "produtoId": 1, "quantidade": 3 }, { "produtoId": 2, "quantidade": 2 } ] }
+
+### 7. Pedido sem estoque (RECUSADO -> 409)
+POST {{url}}/pedidos
+Content-Type: application/json
+
+{ "itens": [ { "produtoId": 2, "quantidade": 1 } ] }
+
+### 8. Cancelar pedido 1 (devolve o estoque)
+PATCH {{url}}/pedidos/1/cancelar
+
+### 9. Cancelar de novo (409)
+PATCH {{url}}/pedidos/1/cancelar
