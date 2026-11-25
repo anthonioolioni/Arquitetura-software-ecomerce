@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CatalogoApi } from './catalogo.contrato.js';
-import { CatalogoService } from './catalogo.service.js';
-import { Produto } from './produto.entity.js';
-import { ProdutosController } from './produtos.controller.js';
+import { CatalogoApi } from './catalogo.contrato';
+import { CatalogoService } from './catalogo.service';
+import { Produto } from './produto.entity';
+import { ProdutosController } from './produtos.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Produto])], // só este módulo acessa a tabela de produtos

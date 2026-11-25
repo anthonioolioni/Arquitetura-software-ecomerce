@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { CatalogoService } from './catalogo.service.js';
-import { CriarProdutoDto } from './dto/criar-produto.dto.js';
+import { CatalogoService } from './catalogo.service';
+import { CriarProdutoDto } from './dto/criar-produto.dto';
 
 @Controller('produtos')
 export class ProdutosController {

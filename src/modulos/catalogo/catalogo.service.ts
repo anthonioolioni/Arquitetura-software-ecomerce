@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CatalogoApi, ProdutoResumo } from './catalogo.contrato.js';
-import { CriarProdutoDto } from './dto/criar-produto.dto.js';
-import { Produto } from './produto.entity.js';
+import { CatalogoApi, ProdutoResumo } from './catalogo.contrato';
+import { CriarProdutoDto } from './dto/criar-produto.dto';
+import { Produto } from './produto.entity';
 
 // Implementação INTERNA do módulo. Ela implementa o contrato público (CatalogoApi)
 // e também tem métodos usados só pelo controller do próprio módulo.

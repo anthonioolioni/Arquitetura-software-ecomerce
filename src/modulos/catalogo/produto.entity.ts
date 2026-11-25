@@ -1,5 +1,5 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { decimalTransformer } from '../../compartilhado/decimal.transformer.js';
+import { decimalTransformer } from '../../compartilhado/decimal.transformer';
 
 // Tabela própria do módulo Catálogo: schema "catalogo", tabela "produtos".
 @Entity({ schema: 'catalogo', name: 'produtos' })
