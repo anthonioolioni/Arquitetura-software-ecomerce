@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CatalogoModule } from './modulos/catalogo/index';
-//import { EstoqueModule } from './modulos/estoque/index';
+import { EstoqueModule } from './modulos/estoque/index';
 //import { PedidosModule } from './modulos/pedidos/pedidos.module';
 
 @Module({
@@ -17,6 +17,7 @@ import { CatalogoModule } from './modulos/catalogo/index';
       synchronize: true, // cria/atualiza as tabelas a partir das entidades (ok para o trabalho)
     }),
     CatalogoModule,
+    EstoqueModule,
   ],
 })
 export class AppModule {}
